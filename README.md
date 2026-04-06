@@ -64,6 +64,14 @@ python app.py
 **Khushi Kalaria **
 
 ---
+## 🌐 Live Demo
+
+https://your-app.onrender.com
+
+⚠️ Note: App may take 30–40 seconds to load initially due to free hosting.
+
+---
+
 
 ## ⭐ If you like this project
 
