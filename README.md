@@ -61,7 +61,7 @@ python app.py
 
 ## 👨‍💻 Author
 
-**Khushi Kalaria (Angel 💙)**
+**Khushi Kalaria **
 
 ---
 
