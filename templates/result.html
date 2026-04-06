@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 0 auto;">
+    <div class="result-header">
+        <h2>Quiz Result: {{ quiz_title }}</h2>
+        <div class="score-display">{{ score }} / {{ total }}</div>
+        <p style="font-size: 1.25rem; color: var(--text-secondary);">
+            {% set percentage = (score / total) * 100 %}
+            {% if percentage >= 80 %}
+                Excellent! You're a master. 🏆
+            {% elif percentage >= 60 %}
+                Great job! Keep it up. 👍
+            {% else %}
+                Good effort! Practice makes perfect. 💪
+            {% endif %}
+        </p>
+        
+        <div style="margin-top: 2rem;">
+            <a href="{{ url_for('dashboard') }}" class="btn btn-primary">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <h3 style="margin-bottom: 1.5rem; border-bottom: 1px solid var(--bg-accent); padding-bottom: 0.5rem;">Review Your Answers</h3>
+
+    {% for res in results %}
+    <div class="result-card {{ 'correct' if res.is_correct else 'incorrect' }}">
+        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem;">
+            <h4 style="font-size: 1.1rem; flex: 1;">Q{{ loop.index }}. {{ res.question }}</h4>
+            <span class="status-badge {{ 'badge-success' if res.is_correct else 'badge-danger' }}">
+                {{ 'Correct' if res.is_correct else 'Incorrect' }}
+            </span>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; font-size: 0.95rem;">
+            <div>
+                <p style="color: var(--text-secondary); margin-bottom: 0.25rem;">Your Answer:</p>
+                <p style="font-weight: 600; color: {{ 'var(--success)' if res.is_correct else 'var(--danger)' }}">{{ res.user_answer }}</p>
+            </div>
+            {% if not res.is_correct %}
+            <div>
+                <p style="color: var(--text-secondary); margin-bottom: 0.25rem;">Correct Answer:</p>
+                <p style="font-weight: 600; color: var(--success)">{{ res.correct_answer }}</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+
+    <div style="text-align: center; margin: 4rem 0;">
+        <a href="{{ url_for('dashboard') }}" class="btn btn-secondary">Try Another Quiz</a>
+    </div>
+</div>
+{% endblock %}

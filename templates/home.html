@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="center" style="margin-top: 10vh; max-width: 800px;">
+    <h1>Craft. Challenge. Conquer.</h1>
+    <p style="font-size: 1.25rem; color: var(--text-secondary); margin-bottom: 2.5rem;">
+        QuizForge is the ultimate platform for creating engaging quizzes and testing your knowledge. 
+        Join thousands of learners and educators today.
+    </p>
+    <div style="display: flex; gap: 1rem; justify-content: center;">
+        <a href="{{ url_for('register') }}" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">Create Your First Quiz</a>
+        <a href="{{ url_for('login') }}" class="btn btn-secondary" style="padding: 1rem 2rem; font-size: 1.1rem;">Explore Quizzes</a>
+    </div>
+</div>
+{% endblock %}

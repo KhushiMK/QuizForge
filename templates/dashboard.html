@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <h2>Explore Quizzes</h2>
+    <a href="{{ url_for('create_quiz') }}" class="btn btn-primary">+ Create New Quiz</a>
+</div>
+
+{% if quizzes|length == 0 %}
+<div class="card" style="text-align: center; padding: 3rem;">
+    <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">No quizzes available yet. Be the first to create one!</p>
+    <a href="{{ url_for('create_quiz') }}" class="btn btn-outline">Get Started</a>
+</div>
+{% else %}
+<div class="quiz-grid">
+    {% for quiz in quizzes %}
+    <div class="card quiz-card">
+        <h3>{{ quiz.title }}</h3>
+        <p style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1rem;">Created by: {{ quiz.created_by }}</p>
+        
+        <div class="quiz-actions">
+            <a href="{{ url_for('attempt_quiz', quiz_id=quiz.id) }}" class="btn btn-primary btn-sm">Attempt</a>
+            {% if session.get('username') == quiz.created_by %}
+                <a href="{{ url_for('add_question', quiz_id=quiz.id) }}" class="btn btn-outline btn-sm">Add Questions</a>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 0 auto;">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h2>{{ title }}</h2>
+        <span style="background-color: var(--bg-accent); padding: 0.5rem 1rem; border-radius: 2rem; font-size: 0.9rem; font-weight: 600;">
+            {{ questions|length }} Questions
+        </span>
+    </div>
+
+    <form method="POST" action="{{ url_for('submit_quiz', quiz_id=quiz_id) }}">
+        {% for q in questions %}
+        <div class="question-item">
+            <h3 style="color: var(--text-primary); margin-bottom: 1.5rem; font-size: 1.25rem;">
+                <span style="color: var(--accent); margin-right: 0.5rem;">Q{{ loop.index }}.</span> {{ q.question }}
+            </h3>
+            
+            <div class="options-list">
+                <label class="option-label">
+                    <input type="radio" name="{{ q.id }}" value="option1" required>
+                    <span>{{ q.option1 }}</span>
+                </label>
+                
+                <label class="option-label">
+                    <input type="radio" name="{{ q.id }}" value="option2">
+                    <span>{{ q.option2 }}</span>
+                </label>
+                
+                <label class="option-label">
+                    <input type="radio" name="{{ q.id }}" value="option3">
+                    <span>{{ q.option3 }}</span>
+                </label>
+                
+                <label class="option-label">
+                    <input type="radio" name="{{ q.id }}" value="option4">
+                    <span>{{ q.option4 }}</span>
+                </label>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div style="display: flex; justify-content: center; margin-top: 3rem; margin-bottom: 5rem;">
+            <button type="submit" class="btn btn-primary" style="padding: 1rem 3rem; font-size: 1.1rem;">Submit Your Answers</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Add visual feedback for selected options
+    document.querySelectorAll('.option-label input[type="radio"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+            const container = e.target.closest('.options-list');
+            container.querySelectorAll('.option-label').forEach(label => {
+                label.classList.remove('selected');
+            });
+            e.target.closest('.option-label').classList.add('selected');
+        });
+    });
+</script>
+{% endblock %}

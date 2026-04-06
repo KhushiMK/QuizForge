@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container" style="max-width: 650px;">
+    <div class="card">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Add Question</h2>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="question">Question Text</label>
+                <textarea name="question" id="question" rows="3" placeholder="Type your question here..." required></textarea>
+            </div>
+            
+            <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <div>
+                    <label for="option1">Option 1</label>
+                    <input type="text" name="option1" id="option1" placeholder="Choice 1" required>
+                </div>
+                <div>
+                    <label for="option2">Option 2</label>
+                    <input type="text" name="option2" id="option2" placeholder="Choice 2" required>
+                </div>
+                <div>
+                    <label for="option3">Option 3</label>
+                    <input type="text" name="option3" id="option3" placeholder="Choice 3" required>
+                </div>
+                <div>
+                    <label for="option4">Option 4</label>
+                    <input type="text" name="option4" id="option4" placeholder="Choice 4" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="correct">Correct Answer</label>
+                <select name="correct" id="correct" required>
+                    <option value="" disabled selected>Select the correct option</option>
+                    <option value="option1">Option 1</option>
+                    <option value="option2">Option 2</option>
+                    <option value="option3">Option 3</option>
+                    <option value="option4">Option 4</option>
+                </select>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; margin-top: 2rem;">
+                <button type="submit" name="add_another" class="btn btn-outline" style="flex: 1;">Save & Add Another</button>
+                <button type="submit" class="btn btn-primary" style="flex: 1;">Save & Finish</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

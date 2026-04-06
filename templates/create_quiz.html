@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="form-container">
+    <div class="card">
+        <h2 style="text-align: center; margin-bottom: 2rem;">New Quiz</h2>
+        
+        <form method="POST">
+            <div class="form-group">
+                <label for="title">Quiz Title</label>
+                <input type="text" name="title" id="title" placeholder="e.g. Python Basics" required>
+            </div>
+            
+            <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                <a href="{{ url_for('dashboard') }}" class="btn btn-secondary" style="flex: 1;">Cancel</a>
+                <button type="submit" class="btn btn-primary" style="flex: 2;">Create Quiz</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
